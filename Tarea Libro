@@ -1,0 +1,238 @@
+//Header Pila
+
+#ifndef PILA_H
+#define PILA_H
+typedef struct Nodo{
+libro info;
+struct Nodo*link;}
+typedef Nodo lista;
+
+class pila
+{
+    public:
+        pila();
+        virtual ~pila();
+        lista GetL() { return L; }
+        Set L
+        void SetL(lista val) { L = val; }
+        void push(libro);
+        libro pop();
+        bool empty();
+
+    protected:
+
+    private:
+        lista L;
+};
+
+pila::pila()
+{
+    this->L->link = NULL;
+}
+void pila::push(libro a)
+{
+   lista q, p;
+   p= new(Nodo);
+   p->info = a;
+   p>link= NULL;
+    if(this->L == NULL)
+    {this->L= p;}
+    else
+    {
+    q= this->L;
+    while(q->link != NULL)
+    {
+       q= q->link;
+    }
+    q->link= p;
+    }
+}
+libro pila::pop()
+{
+
+}
+bool pila::empty()
+{
+    return (this->L.link == NULL)
+}
+#endif // PILA_H
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+
+/*Integrantes Oscar Soto Núñez e Ian Palavicino Aravena
+  Trabajo de Estructura de datos
+*/
+
+
+
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+using std::cout;
+using std::endl;
+std::string input;
+using namespace std;
+
+class libro            //Creacion de clase libro
+{
+private:
+    string autor;
+    string titulo;
+    int paginas;
+public:
+    libro();
+    libro(string, string, int);
+    string getautor();
+    void setautor(string);         //Setters Getters, Constructores, Metodos etc.
+    string gettitulo();
+    void settitulo(string);
+    int getpaginas();
+    void setpaginas(int);
+
+};
+libro::libro()
+{
+
+}
+void libro::setautor(string a)
+{
+    this->autor= a;
+}
+string libro::getautor()
+{
+    return this->autor;
+}
+void libro::settitulo(string b)      //definicion de constructores
+{
+    this->titulo= b;
+}
+string libro::gettitulo()
+{
+    return this->titulo;
+}
+
+void libro::setpaginas(int c)
+{
+    this->paginas= c;
+}
+int libro::getpaginas()
+{
+    return this->paginas;
+}
+class toma                   //Creacio de clase toma, que toma un dato de tipo libro para almacenarlos en una pila
+{
+private:
+    int top;
+    libro a[5];
+public:
+    toma();
+    toma(libro);
+    //virtual ~toma();
+    void push(libro);
+    libro pop();           //Funciones ecpeciales de una pila pop, push y empty
+    bool empty();
+    void ordena();
+};
+
+toma::toma()
+{
+    top= -1;
+}
+void toma::push(libro c)      //Definicion de constructores
+{
+    top++;
+       this->a[top]= c;
+}
+
+libro toma::pop()
+{
+    libro e ;
+    e= a[top];
+    top--;
+    return e;
+}
+bool toma::empty()
+{
+    return(top == -1);
+}
+
+void toma::ordena()        //Defincion de metodo ordena, que ordena los datos de manera ascendente 
+{
+    libro aux;
+    libro aux2[5];
+    int i,k;
+    aux2[2]= this->a[5];
+    for(i=0;i<5-1;i++)
+    {
+		
+        if(aux2[i].getpaginas() > aux2[i].getpaginas())
+        {
+         aux.getpaginas() == aux2[i].getpaginas();
+         aux2[i].getpaginas() == aux2[i+1].getpaginas();
+         aux2[i+1].getpaginas() == aux.getpaginas();
+         	
+         
+        }
+    
+    }
+
+};
+
+
+void mostrar( toma t)    //Funcion Mostrar, que muestra por pantalla los resultados 
+{
+    toma aux;
+    int i=0;
+    toma z;
+    while(!t.empty())
+    {
+        libro e, k;
+        e= t.pop();
+        cout <<"titulo: "<<e.gettitulo() << endl;
+        cout <<"numero de paginas " <<e.getpaginas() <<endl;
+        aux.push(e);
+        i++;
+    }
+    while(!aux.empty())
+    {t.push(aux.pop());}
+
+}
+namespace std{};
+
+int main(int argc, char** argv)   //Main en el cual se ingresan los datos tales como el autor, titulo y cant de pag
+{
+
+    int i;
+    libro a,b,c,d,e;
+    toma y;
+     a.setautor("ar");
+     a.settitulo("Las Cronicas de narnia");
+     a.setpaginas(800);
+     y.push(a);
+
+     b.setautor("ar");
+     b.settitulo("Harry Potter");
+     b.setpaginas(400);
+     y.push(b);
+
+     c.setautor("ar");
+     c.settitulo("Star Wars IV");
+     c.setpaginas(250);
+     y.push(c);
+
+     d.setautor("ar");
+     d.settitulo("Subterra");
+     d.setpaginas(235);
+     y.push(d);
+
+     e.setautor("ar");
+     e.settitulo("El Caballero de la armadura Oxidada");
+     e.setpaginas(89);
+     y.push(e);
+
+     y.ordena();
+     mostrar(y);
+    return 0;
+}
